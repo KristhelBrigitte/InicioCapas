@@ -111,7 +111,7 @@ namespace InicioCapas
         {
             ELibro libro;
             LNLibro lnl = new LNLibro(Config.cadConexion);//Creo el objeto y paso la cadena de consturctor
-         //   LNCategoria cat = new LNCategoria(Config.cadConexion);
+            LNCategoria cat = new LNCategoria(Config.cadConexion);
             LNAutor at = new LNAutor(Config.cadConexion);
             if (textosLlenos())
             {
@@ -124,8 +124,8 @@ namespace InicioCapas
                     {
                         if (!lnl.claveLibroRepetida(libro.ClaveLibro))
                         {
-                         //   if (cat.claveCategoriaExiste(libro.Categoria.ClaveCategoria))
-                         //   {
+                             if (cat.claveCategoriaExiste(libro.Categoria.ClaveCategoria))
+                             {
                                 if (at.claveAutorExiste(libro.ClaveAutor)){
 
                                     if (lnl.insertar(libro) > 0)
@@ -138,16 +138,16 @@ namespace InicioCapas
                                         MessageBox.Show("Error, no se logró insertar!");
                                     }
                                 }
-                            else
-                                {
-                                    MessageBox.Show("La clave del autor es incorrecta");
+                                else
+                                    {
+                                        MessageBox.Show("La clave del autor es incorrecta");
                                 }
                               
-                          //  }
-                          //  else
-                          //  {
+                             }
+                            else
+                            {
                                 MessageBox.Show("La clave de categoria es incorrecta");
-                        //   }
+                            }
                             //TODO Agregar acceso a capa de lógica
                         }
                     }
