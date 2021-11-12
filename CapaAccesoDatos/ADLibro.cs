@@ -148,7 +148,7 @@ namespace CapaAccesoDatos
             return result;
 
         }
-
+        
         public DataSet listarTodos(string condicion)
         {
             DataSet setLibros = new DataSet();
@@ -179,8 +179,5 @@ namespace CapaAccesoDatos
             //sentencia=${sentencia}where{condicion};
             return setLibros;
         }
-
-        
-
     }
 }

@@ -47,16 +47,11 @@ namespace InicioCapas
      
                  mensajeError(ex);
             }
-
             dgvLibros.Columns[0].HeaderText = "Clave de libro";
             dgvLibros.Columns[1].HeaderText = "Titulo";
             dgvLibros.Columns[2].HeaderText = "Clave Autor"; 
             dgvLibros.Columns[3].HeaderText = "Clave Categoria";
-
             dgvLibros.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
-
-
-
         }
 
 
@@ -65,9 +60,6 @@ namespace InicioCapas
             MessageBox.Show(ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
-
-
-
         #endregion
 
 
@@ -119,6 +111,8 @@ namespace InicioCapas
         {
             ELibro libro;
             LNLibro lnl = new LNLibro(Config.cadConexion);//Creo el objeto y paso la cadena de consturctor
+         //   LNCategoria cat = new LNCategoria(Config.cadConexion);
+            LNAutor at = new LNAutor(Config.cadConexion);
             if (textosLlenos())
             {
                 libro = new ELibro(txtClaveLibro.Text, txtTituloLibro.Text, txtClaveAutor.Text, categoria, false);
@@ -130,16 +124,31 @@ namespace InicioCapas
                     {
                         if (!lnl.claveLibroRepetida(libro.ClaveLibro))
                         {
-                            //TODO Agregar acceso a capa de lógica
-                            if (lnl.insertar(libro) > 0)
-                            {
-                                MessageBox.Show("Guardado con éxito");
+                         //   if (cat.claveCategoriaExiste(libro.Categoria.ClaveCategoria))
+                         //   {
+                                if (at.claveAutorExiste(libro.ClaveAutor)){
 
-                            }
+                                    if (lnl.insertar(libro) > 0)
+                                    {
+                                        MessageBox.Show("Guardado con éxito");
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error, no se logró insertar!");
+                                    }
+                                }
                             else
-                            {
-                                MessageBox.Show("No se puede insertar");
-                            }
+                                {
+                                    MessageBox.Show("La clave del autor es incorrecta");
+                                }
+                              
+                          //  }
+                          //  else
+                          //  {
+                                MessageBox.Show("La clave de categoria es incorrecta");
+                        //   }
+                            //TODO Agregar acceso a capa de lógica
                         }
                     }
                     else
